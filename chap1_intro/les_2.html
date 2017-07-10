@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First lesson vueJs</title>
+  <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue" type="text/javascript"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <h1>Lesson de VUEJS</h1>
+  <h3>Conditions et boucles</h3>
+
+  <div id="app-3">
+    <p v-if="seen">
+      Maintenant vous me voyez...
+    </p>
+  </div>
+
+  <h2>La directive v-for</h2>
+  <div id="app-4">
+    <ol>
+      <li v-for ="todo in todos">
+        {{todo.text}}
+      </li>
+    </ol>
+  </div>
+
+
+  <script>
+    var app3 = new Vue({
+      el:'#app-3',
+      data: {
+        seen: false
+      }
+    })
+
+    var app4 = new Vue({
+      el: '#app-4',
+      data : {
+        todos: [
+          { text: 'Eric Mangitukwa'},
+          { text: 'Lloyd Mangitukwa'},
+          { text: 'Imanih Mangitukwa'}
+        ]
+      }
+    })
+
+    app4.todos.push({ text: 'Maggy Mangitukwa'})
+  </script>
+
+
+</body>
+</html>

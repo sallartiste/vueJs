@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First lesson vueJs</title>
+
+
+</head>
+<body>
+  <h1>Lesson de VUEJS</h1>
+  <h3>Composer avec des composants</h3>
+  <pre>
+    Le système de composant est un autre concept important de Vue, car c'est une abstraction question
+    nous permet de construire de plus grosses applications composées de plus petits
+    composants réutilisables et autonomes.<br>
+    Dans Vue, un composant est essentiellement une instance de Vue avec des options
+    prédefinies.
+  </pre>
+  <h3>Déclarer un composant avec Vue est très simple..:</h3>
+  <div id="app-7">
+    <ol>
+      <todo-item>
+        v-for= "item in groceryList"
+        v-bind:todo= "item"
+        v-bind:key= "item.id"
+      </todo-item>
+    </ol>
+  </div>
+
+  <script>
+  Vue.component('todo-item', {
+props: ['todo'],
+template: '<li>{{ todo.text }}</li>'
+})
+var app7 = new Vue({
+el: '#app-7',
+data: {
+  groceryList: [
+    { id: 0, text: 'Légumes' },
+    { id: 1, text: 'Fromage' },
+    { id: 2, text: 'Tout ce que les humains sont supposés manger' }
+  ]
+}
+})
+  </script>
+  <script src="https://unpkg.com/vue@2.3.4" type="text/javascript"></script>
+
+
+
+</body>
+</html>

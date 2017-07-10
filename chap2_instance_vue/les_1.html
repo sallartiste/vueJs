@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First lesson vueJs</title>
+  <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue" type="text/javascript"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <h1>L'instance de Vue</h1>
+  <h3>Constructeur</h3>
+  <pre>
+    chaque Vue vm est initialisée en créant une <b>instance racine de Vue</b> avec le constructeur de la fonction <b>Vue</b>
+  </pre>
+  <pre>
+    <code>
+      var vm = new Vue ({
+        //Options
+      })
+    </code>
+  </pre>
+  <pre>
+    Lorsque l'on crée une instance de Vue, on doit passer un <b>objet d'options</b> qui contient les
+    options pour les données, le template, l'élément de montage, les méthodes, les fonctions de retour
+    du cycle de vie ...
+  </pre>
+
+  <h3>Proprétés et méthodes</h3>
+  <pre>Chaque instance de Vue <b>" proxifie "</b> toutes les propriétés contenues dans son objet DATA</pre>
+
+  <pre>
+    <code>
+      var data = { a: 1 }
+      var vm = new Vue({
+        data: data
+      })
+
+      vm.a === data.a //true
+    </code>
+  </pre>
+
+  <script>
+  var vm = new Vue({
+    data: {
+      a: 'toto'
+    },
+    created: function(){
+      alert('a is ' + this.a)
+    }
+  })
+
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First lesson vueJs</title>
+  <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue" type="text/javascript"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <h1>L'instance de Vue</h1>
+  <h3>Syntaxe de template</h3>
+  <h4>Interpolations</h4>
+  <h5># Texte</h5>
+  <pre>
+    La forme la plus élémentaire de la liaison de données est l'interpolation de texte en utilisant la syntaxe  "Moustache"
+    (les doubles accolades)
+
+    <code>
+      &lsaquo;span&rsaquo;Message: {{msg}}&lsaquo;/span&rsaquo;
+    </code>
+
+    La balise moustache sera remplacée par la valeur de la propiété <b>msg</b> de l'objet data
+    correspondant. Elle sera egalement mise à jour à chaque fois la propriété msg de l'objet data changera.
+
+  </pre>
+  <h5># Interprétation du HTML</h5>
+  <pre>
+    les doubles moustaches interprètent la données  en tant que texte brut, pas en tant que HTML.
+    Pour afficher du html , on aura besoin d'utiliser la directive <b><i>v-html</i></b>
+    <code>
+      &lsaquo;div v-html="rawHtml"&rsaquo;&lsaquo;/div&rsaquo;
+    </code>
+  </pre>
+
+  <h5># Attributs</h5>
+  <pre>
+    Les moustaches ne peuvent pas être utilisées à l'interieur des attributs HTML, à la place on utilise
+    une <b>directive v-bind:</b>
+
+    <code>
+      &lsaquo;div v-bind:id="dynamicId"&rsaquo;&lsaquo;/div&rsaquo;
+    </code>
+  </pre>
+
+
+  <script>
+
+
+  </script>
+
+
+</body>
+</html>
