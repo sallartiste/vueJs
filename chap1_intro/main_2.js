@@ -4,6 +4,13 @@ var vm = new Vue({
     greeting: 'Hello mokili',
     name: '',
     isLoggedIn: false,
+    inventory:[
+      {name:'Pomme', price:'0,50'},
+      {name:'Fraise', price:'0,99'},
+      {name:'Banane', price:'1,50'},
+      {name:'Avocat', price:'2,99'}
+    ],
+    X: 1
   },
   methods: {
     sayHello: function(){
@@ -12,6 +19,10 @@ var vm = new Vue({
 
     login: function(){
       this.isLoggedIn = !this.isLoggedIn;
+    },
+
+    doubleX: function(){
+      return this.X*2;
     }
 
   }

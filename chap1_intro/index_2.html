@@ -30,6 +30,16 @@
       <button type="submit" @click="login">Login</button>
     </div>
 
+    <h4>V-FOR</h4>
+    <p>Voici notre liste des articles et Prix</p>
+    <ul v-for=" item in inventory">
+      <li> {{ item.name }} - ${{ item.price }}</li>
+    </ul>
+
+    <h4>Computed Properties</h4>
+    Faites votre calcul <br>
+    <input type="number" v-model="X"> result: {{ doubleX }}
+
   </div>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.js"></script>
   <script src="main_2.js" type="text/javascript"></script>
