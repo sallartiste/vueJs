@@ -20,10 +20,11 @@ var vm = new Vue({
     login: function(){
       this.isLoggedIn = !this.isLoggedIn;
     },
+},
 
+computed:{
     doubleX: function(){
-      return this.X*2;
+        return this.X*2;
     }
-
-  }
+}
 })
