@@ -1,38 +1,71 @@
-//composant static de VueJs
-Vue.component('static-posts', {
+// connexion à l'url de l'API
+const baseUrl = "http://jsonplaceholder.typicode.com";
 
-  //Definition du model (template) que le composant utilisera pour le rendu
-  template: '#static-posts-template',
+//Compasant List
+const List = {
+	template: '#list-template',
 
-  // la fonction Data est l'endroit où nous deffinition  toutes les variables  dont on aura besoin
-  // Dans ce cas, on prend en compte que le tableau de postes
-  data: ( ) => ({
-    posts: [ ]
-  }),
+	data : () => ({
+		posts: []
+	}),
 
-  mounted( ) {
-    this.getPosts( );
-  },
+	mounted () {
+		this.getPosts ();
+	},
 
-  //Les methodes que nous definissions pour ces composant
-  methods: {
-    getPosts( ) {
-      this.posts = [
-        {
-          "title": "Le premier titre du poste!"
-        },
-        {
-          "title": "Le deuxième titre du poste!"
-        },
-        {
-          "title": "Le troisième titre du poste!"
-        }
-      ];
-    }
-  }
+	methods: {
+		getPosts() {
+			axios.get(baseUrl + '/posts').then(response =>{
+				this.posts = response.data;
+				console.log(this.posts);
+			}).catch(error => {
+				console.log(error);
+			})
+		}
+	}
+};
+
+//Composant Post
+const Post = {
+	template: '#post-template',
+	data: () => ({
+		post: null
+	}),
+
+	mounted (){
+		this.getPosts();
+	},
+
+	methods: {
+	    getPost() {
+		    var id = this.$route.params.id;
+		    axios.get(baseUrl + '/posts/' + id).then(response => {
+			    this.post = response.data
+			    console.log(this.post);
+		    }).catch(error => {
+			    console.log(error);
+		    })
+	    }
+	}
+};
+
+//On creer le router de Vue
+var router  = new VueRouter({
+	mode: 'history',
+	routes: [
+		{
+			name: 'homepage',
+			path: '/',
+			component: List
+		},
+		{
+			name: 'post',
+			path: '/:id',
+			component: Post
+		}
+	]
 });
 
-//On crée une nouvelle instance
-new Vue({
-	el: '#app'
-});
+//On cree l'instance Vue avec notre router et montage dans "#app"
+var vue = new Vue({router});
+var app = vue.$mount('#app');
