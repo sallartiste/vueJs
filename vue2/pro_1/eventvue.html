@@ -7,6 +7,15 @@
 </head>
 <body>
   <div id="app">
+     <h2>{{title}}</h2>
+     <form v-on:submit.prevent="addTask()">
+         <input type="text" placeholder="Entre tache à faire" v-model="task">
+         <button type="submit">Ajouter</button>
+     </form>
+
+     <ul>
+         <li v-for='task in tasks'> {{task.description}}</li>
+     </ul>
 
   </div>
   <script src="vue-2/vue.js" type="text/javascript"></script>
