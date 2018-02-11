@@ -9,11 +9,9 @@
 </head>
 <body>
   <div id="app">
-      <h1>{{title}}</h1>
-      <h2>Utilisateurs</h2>
-      <ul>
-        <li v-for="user in users">{{user.id + ". " + user.name}}</li>
-      </ul>
+      <global-cmp></global-cmp>
+      <my-compo :msg="message"></my-compo>
+      <my-compo :msg="message"></my-compo>
   </div>
   <script src="../vue-2/vue.js" type="text/javascript"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

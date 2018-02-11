@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../style.css">
+  <title>Event vueJs</title>
+</head>
+<body>
+  <div id="app">
+      <h1>{{title}}</h1>
+      <my-card>Ici le contenu</my-card>
+      <hr />
+      <h2>Utilisation de la requete ajax de parent par l'enfant</h2>
+      <ul>
+        <user-list :data="users"></user-list>
+      </ul>
+  </div>
+  <script src="../vue-2/vue.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+  Vue.component('my-card',{
+    template:'<div><slot>\
+    contenu par defaut\
+    </slot></div>'
+  })
+
+  Vue.component('user-list', {
+    template:'<div>\
+    <ul>\
+      <li v-for="user in data">\
+          <user-details :usr="user"></user-details>\
+      </li>\
+    </ul>\
+    </div>',
+    props: ['data']
+  });
+
+Vue.component('user-details',{
+  template:'<div>id: {{usr.id}}, ville: {{usr.address.city}}, e-mail: {{usr.email}}</div>',
+  props: ['usr']
+});
+
+  let vm = new Vue({
+      el:'#app',
+      data:{
+          title:'lifecycle hooks',
+          usersUrl:'https://jsonplaceholder.typicode.com/users',
+          users:[]
+      },
+      created:function(){
+          axios.get(this.usersUrl)
+          .then(function(response){
+              vm.users = response.data;
+              console.log(vm.users);
+          })
+      }
+  });
+  </script>
+
+</body>
+</html>
