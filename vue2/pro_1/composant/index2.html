@@ -14,8 +14,12 @@
       <hr />
       <h2>Utilisation de la requete ajax de parent par l'enfant</h2>
       <ul>
-        <user-list :data="users"></user-list>
+        <user-list :data="users" :users-coming="userWhoWillComing"></user-list>
       </ul>
+      <hr />
+      <div v-for="user in userWhoWillComing">
+          {{user.id}}. {{user.name}} ({{user.email}})
+      </div>
   </div>
   <script src="../vue-2/vue.js" type="text/javascript"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -30,16 +34,27 @@
     template:'<div>\
     <ul>\
       <li v-for="user in data">\
-          <user-details :usr="user"></user-details>\
+          <user-details :usr="user" v-on:accept="registerUser(user)"></user-details>\
       </li>\
     </ul>\
     </div>',
-    props: ['data']
+    props: ['data','usersComing'],
+    methods:{
+        registerUser: function(user){
+            this.usersComing.push(user);
+        }
+    }
   });
 
 Vue.component('user-details',{
-  template:'<div>id: {{usr.id}}, ville: {{usr.address.city}}, e-mail: {{usr.email}}</div>',
-  props: ['usr']
+  template:'<div>id: {{usr.id}}, ville: {{usr.address.city}}, e-mail: {{usr.email}} \
+  <button v-on:click="acceptInvit">Accept. Invit</button></div>',
+  props: ['usr'],
+  methods:{
+      acceptInvit: function(){
+          this.$emit('accept');
+      }
+  }
 });
 
   let vm = new Vue({
@@ -47,7 +62,8 @@ Vue.component('user-details',{
       data:{
           title:'lifecycle hooks',
           usersUrl:'https://jsonplaceholder.typicode.com/users',
-          users:[]
+          users:[],
+          userWhoWillComing:[]
       },
       created:function(){
           axios.get(this.usersUrl)
