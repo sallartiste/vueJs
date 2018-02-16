@@ -8,9 +8,32 @@
 <body>
     <h1>Creation  d'un Filtre</h1>
   <div id="app">
-      {{about | coupeFraz}}
+      <h3>Les filtres</h3>
+      {{about | coupeFraz}}<br />
+      {{this.waysToContact}}<br /><br />
+      <div>
+          <h3>Les computed's</h3>
+          S'inscrire à notre newsletter<br />
+          <input type="text" v-model="emailForNewsLetter">
+          <button :disabled="buttonDesactived">Envoyez</button>
+      </div>
+      <div>
+          <h3>Les Wachter's</h3>
+          <div>
+              <input type="text" placeholder="Votre avis" v-model="opinion">
+          </div>
+          <i>{{this.opinionShit}}</i>
+      </div>
+      <div>
+          <h3>Cherchez un utilisateur Git</h3>
+          <input type="text"v-model="githubUser"><br />
+          <strong>{{githubUserResult}}</strong>
+      </div>
+
   </div>
   <script src="vue.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.js"></script>
   <script src="main.js" type="text/javascript"></script>
 </body>
 </html>
