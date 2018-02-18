@@ -2,17 +2,18 @@
     <div>
         <ul>
             <li v-for="user in data">
-                <user-details :usr="user" v-on:accept="registerUser(user)"></user-details>
+                <user-summary :usr="user" v-on:accept="registerUser(user)"></user-summary>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
-  export defaut {
+  import UserSummary from './UserSummary.vue';
+  export default {
       name: 'user-list',
       components: {
-        'user-details': UserDetails
+        'user-summary': UserSummary
     },
     props: ['data','usersComing'],
     methods:{
@@ -21,7 +22,9 @@
         }
     },
     data: function(){
-      userWhoWillComing: []
+      return {
+        userWhoWillComing: []
+      }
     }
   }
 </script>

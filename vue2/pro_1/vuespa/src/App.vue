@@ -1,32 +1,38 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div>
+    <h2>Utilisation de la requete ajax de parent par l'enfant</h2>
+       <!--<user-list :data="users" :users-coming="userWhoWillComing"></user-list>-->
+       <router-view :data="users" :users-coming="userWhoWillComing"></router-view>
+       <hr />
+       <div v-for="user in userWhoWillComing">
+           {{user.id}}. {{user.name}} ({{user.email}})
+       </div>
   </div>
 </template>
 
 <script>
+//import UserList from './UserList.vue';
+
 export default {
   name: 'app',
+  //components: {
+    //'user-list' : UserList
+  //},
+
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      usersUrl:'https://jsonplaceholder.typicode.com/users',
+      users:[],
+      userWhoWillComing:[]
     }
-  }
+  },
+  created: function() {
+     axios.get(this.usersUrl)
+       .then((response) => {
+         this.users = response.data;
+         //console.log(vm.users);
+     })
+ }
 }
 </script>
 
